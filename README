@@ -1,4 +1,4 @@
-안드로이드 제트팩 컴포즈(Jetpack Compose)에서 텍스트 입력창은 구현 방식
+안드로이드 제트팩 컴포즈(Jetpack Compose)에서 텍스트 입력창 구현 방식
 구글은 비동기 상태 동기화 및 성능 문제를 근본적으로 해결하기 위해 상태 기반(State-Based) TextField를 표준으로 권장
 
 1. 값 기반(Value-Based) TextField
