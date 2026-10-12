@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.OutputTransformation
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.insert
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Button
@@ -70,6 +71,8 @@ fun Components() {
         mutableStateOf("")
     }
 
+    val textFieldState = rememberTextFieldState("")
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -80,7 +83,7 @@ fun Components() {
             onClick = {
 //                buttonBackgroundColor.value = Color.Green
                 if (toggle) {
-                    buttonText.value = "Clicked!"
+                    buttonText.value = textFieldState.text.toString()
                     toggle = !toggle
                 } else {
                     buttonText.value = "Touched"
@@ -103,7 +106,7 @@ fun Components() {
         }
 
         Spacer(modifier = Modifier.size(30.dp))
-        HongTextField()
+        HongTextField(textFieldState)
         /*
         TextField(
             value = valueOnTextField.value,
@@ -140,8 +143,8 @@ fun ComponentsPreview() {
 }
 
 @Composable
-fun HongTextField () {
-    val state = rememberTextFieldState("")
+fun HongTextField (state: TextFieldState) {
+//    val state = rememberTextFieldState("")
 
     val passwordTransformation = OutputTransformation {
         val length = length
