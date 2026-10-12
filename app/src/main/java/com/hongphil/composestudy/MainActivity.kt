@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -15,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,8 +46,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Components() {
 
+    var toggle = false
     val buttonBackgroundColor = remember {
         mutableStateOf(Color.Red)
+    }
+
+    val buttonText = remember {
+        mutableStateOf("Button")
+    }
+
+    val valueOnTextField = remember {
+        mutableStateOf("")
     }
 
     Column(
@@ -56,7 +67,15 @@ fun Components() {
     ) {
         Button(
             onClick = {
-                buttonBackgroundColor.value = Color.Green
+//                buttonBackgroundColor.value = Color.Green
+                if (toggle) {
+                    buttonText.value = "Clicked!"
+                    toggle = !toggle
+                } else {
+                    buttonText.value = "Touched"
+                    toggle = !toggle
+
+                }
             },
             modifier = Modifier.size(250.dp, 60.dp),
             // use 'containerColor' instead of 'backgroundColor' from Material 3
@@ -65,12 +84,20 @@ fun Components() {
             border = BorderStroke(3.dp, Color.Black)
         ) {
             Text(
-                text = "Do Your Magic",
+                text = buttonText.value,
                 color = Color.White,
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center
             )
         }
+
+        Spacer(modifier = Modifier.size(30.dp))
+
+        TextField(
+            value = valueOnTextField.value,
+            onValueChange = { valueOnTextField.value = it },
+            label = { Text(text = "Enter your name")}
+        )
     }
 }
 
