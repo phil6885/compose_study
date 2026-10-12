@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,6 +32,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
@@ -71,6 +74,10 @@ fun Components() {
         mutableStateOf("")
     }
 
+    val myImage = remember {
+        mutableStateOf(R.drawable.second_image)
+    }
+
     val textFieldState = rememberTextFieldState("")
 
     Column(
@@ -79,14 +86,23 @@ fun Components() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Image(
+            painter = painterResource(id = myImage.value),
+            contentDescription = "First Image",
+            modifier = Modifier.size(300.dp),
+            contentScale = ContentScale.Fit
+        )
+
+        Spacer(modifier = Modifier.size(30.dp))
+
         Button(
             onClick = {
 //                buttonBackgroundColor.value = Color.Green
                 if (toggle) {
-                    buttonText.value = textFieldState.text.toString()
+                    myImage.value = R.drawable.first_image
                     toggle = !toggle
                 } else {
-                    buttonText.value = "Touched"
+                    myImage.value = R.drawable.second_image
                     toggle = !toggle
 
                 }
@@ -133,7 +149,6 @@ fun Components() {
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun ComponentsPreview() {
@@ -143,7 +158,7 @@ fun ComponentsPreview() {
 }
 
 @Composable
-fun HongTextField (state: TextFieldState) {
+fun HongTextField(state: TextFieldState) {
 //    val state = rememberTextFieldState("")
 
     val passwordTransformation = OutputTransformation {
@@ -154,5 +169,6 @@ fun HongTextField (state: TextFieldState) {
     TextField(
         state = state,
         label = { Text("비밀번호") },
-        outputTransformation = passwordTransformation)
+        outputTransformation = passwordTransformation
+    )
 }
