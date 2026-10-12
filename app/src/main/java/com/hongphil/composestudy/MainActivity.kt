@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.OutputTransformation
+import androidx.compose.foundation.text.input.insert
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -100,7 +103,8 @@ fun Components() {
         }
 
         Spacer(modifier = Modifier.size(30.dp))
-
+        HongTextField()
+        /*
         TextField(
             value = valueOnTextField.value,
             onValueChange = { valueOnTextField.value = it },
@@ -121,8 +125,11 @@ fun Components() {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             visualTransformation = PasswordVisualTransformation()
         )
+        */
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
@@ -130,4 +137,19 @@ fun ComponentsPreview() {
     ComposeStudyTheme {
         Components()
     }
+}
+
+@Composable
+fun HongTextField () {
+    val state = rememberTextFieldState("")
+
+    val passwordTransformation = OutputTransformation {
+        val length = length
+        replace(0, length, "*".repeat(length))
+    }
+
+    TextField(
+        state = state,
+        label = { Text("비밀번호") },
+        outputTransformation = passwordTransformation)
 }
