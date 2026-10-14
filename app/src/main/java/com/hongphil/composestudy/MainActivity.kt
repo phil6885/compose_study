@@ -62,13 +62,13 @@ class MainActivity : ComponentActivity() {
 fun HongRadioGroup() {
 
     val radioOptions = listOf("Red", "Green", "Blue", "Yellow")
-    var selectedOption  by remember { mutableStateOf(radioOptions[0]) }
+    var selectedOption by remember { mutableStateOf(radioOptions[0]) }
 
     Column(
         Modifier
             .fillMaxSize()
             .selectableGroup(),
-        ) {
+    ) {
         radioOptions.forEach { option ->
             Row(
                 Modifier
@@ -79,8 +79,17 @@ fun HongRadioGroup() {
                         onClick = { selectedOption = option },
                         role = Role.RadioButton
                     )
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(option)
+               RadioButton(
+                   selected = (option == selectedOption),
+                   onClick = null
+               )
+                Text(
+                    text = option,
+                    modifier = Modifier.padding(start = 16.dp)
+                    )
             }
         }
 
