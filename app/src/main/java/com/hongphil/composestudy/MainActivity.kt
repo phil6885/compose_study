@@ -178,6 +178,8 @@ fun CheckBox() {
         horizontalAlignment = Alignment.Start
     ) {
         Text(
+            //if the inner 'remember' is changed,
+            // the inclding 'remember' is also  changed and triggered
             text = "Gender is\n${gender.value}",
             fontSize = 24.sp,
             color = Color.White,
@@ -188,7 +190,7 @@ fun CheckBox() {
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.size(20.dp))
+        Spacer(modifier = Modifier.size(20.dp))`
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
