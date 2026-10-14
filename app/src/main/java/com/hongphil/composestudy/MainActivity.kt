@@ -4,40 +4,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldState
-import androidx.compose.foundation.text.input.insert
-import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.CheckboxDefaults.colors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -60,92 +49,95 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components() {
-
-    var toggle = false
-    val buttonBackgroundColor = remember {
-        mutableStateOf(Color.Red)
-    }
-
-    val buttonText = remember {
-        mutableStateOf("Button")
-    }
-
-    val valueOnTextField = remember {
-        mutableStateOf("")
-    }
-
-    val myImage = remember {
-        mutableStateOf(R.drawable.second_image)
-    }
-
-    val textFieldState = rememberTextFieldState("")
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Image(
-            painter = painterResource(id = myImage.value),
-            contentDescription = "First Image",
-            modifier = Modifier.size(300.dp),
-            contentScale = ContentScale.Fit
-        )
-
-        Spacer(modifier = Modifier.size(30.dp))
-
-        Button(
-            onClick = {
-//                buttonBackgroundColor.value = Color.Green
-                if (toggle) {
-                    myImage.value = R.drawable.first_image
-                    toggle = !toggle
-                } else {
-                    myImage.value = R.drawable.second_image
-                    toggle = !toggle
-
-                }
-            },
-            modifier = Modifier.size(250.dp, 60.dp),
-            // use 'containerColor' instead of 'backgroundColor' from Material 3
-            colors = ButtonDefaults.buttonColors(containerColor = buttonBackgroundColor.value),
-            shape = RoundedCornerShape(10.dp),
-            border = BorderStroke(3.dp, Color.Black)
-        ) {
-            Text(
-                text = buttonText.value,
-                color = Color.White,
-                fontSize = 20.sp,
-                textAlign = TextAlign.Center
-            )
+    CheckBox()
+    /*
+        var toggle = false
+        val buttonBackgroundColor = remember {
+            mutableStateOf(Color.Red)
         }
 
-        Spacer(modifier = Modifier.size(30.dp))
-        HongTextField(textFieldState)
-        /*
-        TextField(
-            value = valueOnTextField.value,
-            onValueChange = { valueOnTextField.value = it },
-            label = { Text(text = "Enter your name")},
-            modifier = Modifier.width(300.dp),
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = Color.White,
-                unfocusedTextColor = Color.Gray,
-                focusedContainerColor = Color.Blue,
-                unfocusedContainerColor = Color.Green,
-                focusedLabelColor = Color.Red,
-                unfocusedLabelColor = Color.White,
-                focusedIndicatorColor = Color.Green,
-                unfocusedIndicatorColor = Color.Red,
-            ),
-            textStyle = MaterialTheme.typography.bodyMedium,
-            maxLines = 2,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            visualTransformation = PasswordVisualTransformation()
-        )
+        val buttonText = remember {
+            mutableStateOf("Button")
+        }
+
+        val valueOnTextField = remember {
+            mutableStateOf("")
+        }
+
+        val myImage = remember {
+            mutableStateOf(R.drawable.second_image)
+        }
+
+        val textFieldState = rememberTextFieldState("")
         */
-    }
+    /*
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Image(
+                painter = painterResource(id = myImage.value),
+                contentDescription = "First Image",
+                modifier = Modifier.size(300.dp),
+                contentScale = ContentScale.Fit
+            )
+
+            Spacer(modifier = Modifier.size(30.dp))
+
+            Button(
+                onClick = {
+    //                buttonBackgroundColor.value = Color.Green
+                    if (toggle) {
+                        myImage.value = R.drawable.first_image
+                        toggle = !toggle
+                    } else {
+                        myImage.value = R.drawable.second_image
+                        toggle = !toggle
+
+                    }
+                },
+                modifier = Modifier.size(250.dp, 60.dp),
+                // use 'containerColor' instead of 'backgroundColor' from Material 3
+                colors = ButtonDefaults.buttonColors(containerColor = buttonBackgroundColor.value),
+                shape = RoundedCornerShape(10.dp),
+                border = BorderStroke(3.dp, Color.Black)
+            ) {
+                Text(
+                    text = buttonText.value,
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
+
+            Spacer(modifier = Modifier.size(30.dp))
+            HongTextField(textFieldState)
+            /*
+            TextField(
+                value = valueOnTextField.value,
+                onValueChange = { valueOnTextField.value = it },
+                label = { Text(text = "Enter your name")},
+                modifier = Modifier.width(300.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.White,
+                    unfocusedTextColor = Color.Gray,
+                    focusedContainerColor = Color.Blue,
+                    unfocusedContainerColor = Color.Green,
+                    focusedLabelColor = Color.Red,
+                    unfocusedLabelColor = Color.White,
+                    focusedIndicatorColor = Color.Green,
+                    unfocusedIndicatorColor = Color.Red,
+                ),
+                textStyle = MaterialTheme.typography.bodyMedium,
+                maxLines = 2,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                visualTransformation = PasswordVisualTransformation()
+            )
+            */
+        }
+        */
 }
 
 
@@ -171,4 +163,68 @@ fun HongTextField(state: TextFieldState) {
         label = { Text("비밀번호") },
         outputTransformation = passwordTransformation
     )
+}
+
+@Composable
+fun CheckBox() {
+    val malecheckedStatus = remember { mutableStateOf(false) }
+    val femalecheckedStatus = remember { mutableStateOf(true) }
+    val gender = remember { mutableStateOf("Female") }
+
+    val myColor = 0xFFE91E63
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = "Gender is\n${gender.value}",
+            fontSize = 24.sp,
+            color = Color.White,
+            modifier = Modifier
+                .width(300.dp)
+                .background(Color(myColor))
+                .padding(20.dp),
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(modifier = Modifier.size(20.dp))
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Checkbox(
+                checked = malecheckedStatus.value,
+                onCheckedChange = {
+                    malecheckedStatus.value = it
+                    femalecheckedStatus.value = !it
+                    gender.value = "Male"
+                },
+                colors = CheckboxDefaults.colors(Color(myColor))
+            )
+            Spacer(modifier = Modifier.size(20.dp))
+            Text(text = "Male")
+
+        }
+
+        Spacer(modifier = Modifier.size(20.dp))
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Checkbox(
+                checked = femalecheckedStatus.value,
+                onCheckedChange = {
+                    femalecheckedStatus.value = it
+                    malecheckedStatus.value = !it
+                    gender.value = "Female"
+                },
+                colors = CheckboxDefaults.colors(Color(myColor))
+            )
+            Spacer(modifier = Modifier.size(20.dp))
+            Text(text = "Female")
+        }
+    }
 }
